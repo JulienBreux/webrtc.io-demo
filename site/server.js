@@ -1,11 +1,12 @@
-var app = require('express')();
-var server = require('http').createServer(app);
-var webRTC = require('webrtc.io').listen(server);
+var express = require('express');
+var app     = require('express')();
+var server  = require('http').createServer(app);
+var webRTC  = require('webrtc.io').listen(server);
 
 var port = process.env.PORT || 3001;
 server.listen(port);
 
-
+app.use(express.basicAuth('genius', 'iadvize!'));
 
 app.get('/', function(req, res) {
   res.sendfile(__dirname + '/index.html');
